@@ -1,0 +1,22 @@
+-- *은 모든 열 이라는 의미로 사용 한다.
+SELECT *
+FROM employees; --명령어는 대문자로 사용을 권장 (필수 아님)
+
+SELECT employee_id, first_name, last_name
+FROM employees;
+
+
+SELECT employee_id, first_name, last_name
+FROM employees
+ORDER BY employee_id DESC,first_name ASC; --DESC 내림차순 ASC 오름차순
+
+
+SELECT DISTINCT job_id
+
+FROM   employees;  --중복제거
+
+
+SELECT employee_id AS 사원번호, first_name AS 이름, last_name AS 성
+
+
+FROM   employees; --as로 변수지정
