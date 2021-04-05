@@ -12,11 +12,179 @@ ORDER BY employee_id DESC,first_name ASC; --DESC 내림차순 ASC 오름차순
 
 
 SELECT DISTINCT job_id
-
 FROM   employees;  --중복제거
 
 
 SELECT employee_id AS 사원번호, first_name AS 이름, last_name AS 성
-
-
 FROM   employees; --as로 변수지정
+
+
+
+SELECT employee_id, first_name||last_name
+FROM   employees;   -- 붙혀서 출력
+
+
+SELECT employee_id, 
+first_name||' ' ||last_name,
+email||'@' || 'company.com' --문자열
+FROM   employees;
+--두개열을 붙여서 하나의 값으로 나타낸다
+--가운데 한칸띄기
+
+SELECT employee_id, salary as 급여,
+    salary+500  as 추가급여, 
+    salary -100 as 인하급여 ,
+    (salary*1.1)/2 as 조정급여
+
+FROM   employees;
+
+SELECT 열 이름 --------➋ 출력하려는 열
+
+FROM 테이블 이름 ------➊ 참조하려는 테이블
+
+WHERE 원하는 조건; ----➌ 조건식
+
+SELECT *
+
+FROM   employees
+
+WHERE  first_name = 'David';
+
+-- first_name 에서 David 만 출력
+
+
+SELECT *
+
+FROM   employees
+
+WHERE  employee_id >= 105;
+
+-- employee_id 105이상 직원 출력
+
+SELECT *
+
+FROM   employees
+
+WHERE  salary BETWEEN 10000 AND 20000;
+--employees 테이블에서 salary가 10,000 이상이고 20,000 이하인 직원 정보를 출력하세요.
+
+
+--employees 테이블에서 salary가 10000, 17000, 24000인 직원 정보를 출력
+
+SELECT *
+
+FROM   employees
+
+WHERE  salary IN (10000, 17000, 24000);
+
+SELECT *
+
+FROM   employees
+
+WHERE  job_id LIKE 'AD%'; 
+--맨 앞에 AD라는 문자 값을 가지면서 그 뒤로 모든 문자(%)를 포함하는 데이터
+
+SELECT *
+FROM  employees
+WHERE   job_id LIKE 'AD___'; 
+--_가 3개, 즉 AD 뒤에 따라오는 문자열이 3자리인 데이터
+
+
+--  employees 테이블에서 manager_id가 null 값인 직원 정보를 출력해 보세요.
+SELECT *
+
+FROM   employees
+
+WHERE  manager_id IS NULL;
+
+employees 테이블에서 salary가 4000을 초과하면서(AND), job_id가 IT_PROG인 값을 조회하세요.
+SELECT *
+FROM   employees
+WHERE  salary > 4000;
+AND job_id = 'IT_PROG';
+
+
+
+employees 테이블에서 manager_id가 null 값이 아닌 직원을 조회해 보세요.
+
+SELECT *
+
+FROM   employees
+
+WHERE  manager_id IS NOT NULL; ----null 값이 아닌 경우
+
+SELECT *
+
+FROM   employees
+
+WHERE  employee_id <> 105;
+--105 와 같지않은 직원ㅇ
+
+
+ employees 테이블에서 last_name을 소문자와 대문자로 각각 출력하고, email의 첫 번째 문자는 대문자로 출력하세요.
+SELECT last_name,
+
+       LOWER(last_name) LOWER적용3 ,
+
+       UPPER(last_name) UPPER적용,
+
+       email,
+
+       INITCAP(email) INITCAP적용
+
+FROM   employees;
+
+
+SELECT job_id, 
+        SUBSTR(job_id,1,2)
+FROM employees;
+
+
+-- employee 테이블에서 job-id 값의 첫 자리 부터 두개 문자 출력
+
+
+--employees 테이블에서 job_id 데이터 값의 첫째 자리부터 시작해서 두 개의 문자를 출력하세요.
+
+SELECT job_id, SUBSTR(job_id, 1, 2) 적용결과
+
+FROM   employees;
+
+--employees 테이블에서 job_id 문자열 값이 ACCOUNT면 ACCNT로 출력하세요.
+
+SELECT job_id, REPLACE(job_id, 'ACCOUNT', 'ACCNT') 적용결과
+
+FROM   employees;
+
+-- employees 테이블에서 first_name에 대해 12자리의 문자열 자리를 만들되 first_name의 데이터 값이 12자리보다 작으면 왼쪽에서부터 를 채워서 출력하세요.
+
+SELECT first_name, LPAD(first_name, 12, '') LPAD적용결과
+
+FROM   employees;
+
+--employees 테이블에서 first_name에 대해 12자리의 문자열 자리를 만들되 first_name의 데이터 값이 12자리보다 작으면 왼쪽에서부터 를 채워서 출력하세요.
+
+SELECT first_name, LPAD(first_name, 12, '') LPAD적용결과
+
+FROM   employees;
+
+--employees 테이블에서 job_id의 데이터 값에 대해 왼쪽 방향부터 ‘F’ 문자를 만나면 삭제하고 또 오른쪽 방향부터 ‘T’ 문자를 만나면 삭제해 보세요.
+
+SELECT job_id,
+
+       LTRIM(job_id, 'F') LTRIM적용결과,
+
+       RTRIM(job_id, 'T') RTRIM적용결과
+
+FROM   employees;
+
+
+--TRIM 함수는 공백(space)을 제거하는 데 사용합니다. 단, 문자열 중간에 있는 공백은 제거할 수 없습니다.
+SELECT TRIM('       BIG DATA       ')
+
+FROM    dual;
+
+--공백 제거`~
+
+ 
+
+
