@@ -331,3 +331,23 @@ SELECT employee_id, first_name, last_name, salary,
 FROM  employees
 
 WHERE job_id = 'IT_PROG';
+
+--employees 테이블에서 salary의 최댓값과 최솟값, first_name의 최댓값과 최댓값을 출력해 보세요.
+
+SELECT MAX(salary) 최댓값, MIN(salary) 최솟값, MAX(first_name) 최대문자값, MIN(first_name) 최소문자값
+
+FROM   employees;
+
+ -- employees 테이블에서 employee_id가 10 이상인 직원에 대해 job_id별로 그룹화하여 job_id별 총 급여와 job_id별 평균 급여를 구하고, job_id별 총 급여를 기준으로 내림차순 정렬하세요.
+
+SELECT job_id 직무, SUM(salary) 직무별_총급여, AVG(salary) 직무별_평균급여
+
+FROM   employees
+
+WHERE  employee_id >= 10
+
+GROUP  BY job_id
+
+ORDER  BY 직무별_총급여 DESC, 직무별_평균급여;
+
+
